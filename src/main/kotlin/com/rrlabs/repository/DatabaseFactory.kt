@@ -1,5 +1,6 @@
 package com.rrlabs.repository
 
+import com.rrlabs.data.table.NoteTable
 import com.rrlabs.data.table.UserTable
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
@@ -15,6 +16,7 @@ object DatabaseFactory {
         Database.connect(hikari())
         transaction {
             SchemaUtils.create(UserTable)
+            SchemaUtils.create(NoteTable)
         }
     }
 

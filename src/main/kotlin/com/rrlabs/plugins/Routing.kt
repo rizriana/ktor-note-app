@@ -1,5 +1,6 @@
 package com.rrlabs.plugins
 
+import com.rrlabs.Routes.noteRoute
 import com.rrlabs.Routes.userRoutes
 import com.rrlabs.auth.JwtService
 import com.rrlabs.auth.hash
@@ -32,5 +33,6 @@ fun Application.configureRouting() {
         }
 
         userRoutes(db, jwtService, hashFunction)
+        noteRoute(db, hashFunction)
     }
 }
