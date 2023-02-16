@@ -1,0 +1,1 @@
+rootProject.name = "com.rrlabs.ktor-note-app"
