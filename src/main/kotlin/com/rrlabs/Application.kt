@@ -1,7 +1,8 @@
 package com.rrlabs
 
-import io.ktor.server.application.*
 import com.rrlabs.plugins.*
+import io.ktor.server.application.*
+import io.ktor.server.locations.*
 
 fun main(args: Array<String>): Unit =
     io.ktor.server.netty.EngineMain.main(args)

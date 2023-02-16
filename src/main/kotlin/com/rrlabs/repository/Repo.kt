@@ -19,14 +19,10 @@ class Repo {
         }
     }
 
-    suspend fun findUserByEmail(email: String) {
-        dbQuery {
-            UserTable.select {
-                UserTable.email.eq(email)
-            }
-                .map { rowToUser(it) }
-                .singleOrNull()
-        }
+    suspend fun findUserByEmail(email: String) = dbQuery {
+        UserTable.select { UserTable.email.eq(email) }
+            .map { rowToUser(it) }
+            .singleOrNull()
     }
 
     private fun rowToUser(row: ResultRow?): User? {

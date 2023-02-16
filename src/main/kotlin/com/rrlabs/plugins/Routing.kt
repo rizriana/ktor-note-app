@@ -1,5 +1,6 @@
 package com.rrlabs.plugins
 
+import com.rrlabs.Routes.userRoutes
 import com.rrlabs.auth.JwtService
 import com.rrlabs.auth.hash
 import com.rrlabs.data.model.User
@@ -29,5 +30,7 @@ fun Application.configureRouting() {
             )
             call.respond(jwtService.generateToken(user))
         }
+
+        userRoutes(db, jwtService, hashFunction)
     }
 }
