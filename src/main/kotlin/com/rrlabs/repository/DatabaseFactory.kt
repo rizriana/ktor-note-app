@@ -2,8 +2,16 @@ package com.rrlabs.repository
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import org.jetbrains.exposed.sql.Database
+import org.jetbrains.exposed.sql.transactions.transaction
 
 object DatabaseFactory {
+
+    fun init() {
+        Database.connect(hikari())
+    }
 
     fun hikari(): HikariDataSource {
         val config = HikariConfig()
@@ -17,5 +25,11 @@ object DatabaseFactory {
         }
 
         return HikariDataSource(config)
+    }
+
+    suspend fun <T> dbQuery(block: () -> T): T {
+        return withContext(Dispatchers.IO) {
+            transaction { block() }
+        }
     }
 }
